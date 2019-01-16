@@ -1,6 +1,6 @@
 import { applyMiddleware, compose, createStore } from 'redux';
 import { createBrowserHistory } from 'history';
-import { connectRouter, routerMiddleware } from 'connected-react-router';
+import { routerMiddleware } from 'connected-react-router';
 import createSagaMiddleware from 'redux-saga';
 import rootReducer from '../reducers';
 import rootSaga from '../sagas';
@@ -11,7 +11,7 @@ const initialState = {};
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
-    connectRouter(history)(rootReducer), // new root reducer with router state
+    rootReducer(history), // new root reducer with router state
     initialState,
     compose(
         applyMiddleware(
