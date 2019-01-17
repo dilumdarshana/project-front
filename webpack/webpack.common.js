@@ -14,10 +14,14 @@ const cssPlugin = new MiniCssExtractPlugin({
 
 const getConfigBasedOnEnv = () => {
     switch (process.env.NODE_ENV) {
-        case 'dev': return path.join(__dirname, '/../app/config/dev.js');
-        case 'prod': return path.join(__dirname, '/../app/config/prod.js');
-        case 'qa': return path.join(__dirname, '/../app/config/qa.js');
-        default: return path.join(__dirname, '/../app/config/dev.js');
+        case 'dev':
+            return path.join(__dirname, '/../app/config/dev.js');
+        case 'prod':
+            return path.join(__dirname, '/../app/config/prod.js');
+        case 'qa':
+            return path.join(__dirname, '/../app/config/qa.js');
+        default:
+            return path.join(__dirname, '/../app/config/dev.js');
     }
 };
 
@@ -45,7 +49,7 @@ module.exports = {
             },
             {
                 test: /\.(pdf|jpg|png|gif|svg|ico)$/,
-                loader: 'url-loader'
+                loader: 'url-loader',
             },
         ],
     },
@@ -54,6 +58,6 @@ module.exports = {
         extensions: ['.js', '.jsx', '.css', '.scss'],
         alias: {
             appConfig: getConfigBasedOnEnv(),
-        }
+        },
     },
 };

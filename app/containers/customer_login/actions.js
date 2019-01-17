@@ -6,21 +6,21 @@ import {
 
 const customerLogin = phone => ({
     type: CUSTOMER_LOGIN,
-    phone
+    phone,
 });
 
 const customerLoginSuccess = response => ({
     type: CUSTOMER_LOGIN_SUCCESS,
-    response
+    response,
 });
 
 const customerLoginFailed = error => ({
     type: CUSTOMER_LOGIN_FAILED,
-    error
+    error,
 });
 
 export {
     customerLogin,
     customerLoginSuccess,
-    customerLoginFailed
-}
+    customerLoginFailed,
+};

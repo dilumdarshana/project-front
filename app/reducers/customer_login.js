@@ -10,13 +10,13 @@ const initialState = {
 };
 
 export default function customerLogin(state = initialState, action) {
-    switch(action.type) {
+    switch (action.type) {
         case CUSTOMER_LOGIN:
-            return { ...state, };
+            return { ...state, customerLoginStatus: null, customerLoginError: null };
         case CUSTOMER_LOGIN_SUCCESS:
             return { ...state, customerLoginStatus: action.response };
         case CUSTOMER_LOGIN_FAILED:
-            return { ...state, customerLoginError: action.error };    
+            return { ...state, customerLoginError: action.error };
         default:
             return state;
     }

@@ -4,7 +4,7 @@ import {
 } from '../../constants/action_types/customer';
 import {
     customerLoginSuccess,
-    customerLoginFailed
+    customerLoginFailed,
 } from './actions';
 import httpRequests from '../../helpers/httpRequests';
 

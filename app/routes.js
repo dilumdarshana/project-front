@@ -1,19 +1,23 @@
 import React from 'react';
-import {Switch, Route} from 'react-router-dom';
-import {ConnectedRouter} from 'connected-react-router';
+import { Switch, Route } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
 import Loadable from 'react-loadable';
 import Layout from './layout';
-import {history} from './store';
+import { history } from './store';
 
 import UsersList from './containers/users/users_list';
-import SignUp from './containers/customer_login/signup';
 
 import LoadingComponent from './components/common/loading';
 import AuthRoute from './components/authRoute';
 
 const SignIn = Loadable({
     loader: () => import('./containers/customer_login/signin'),
-    loading: LoadingComponent
+    loading: LoadingComponent,
+});
+
+const SignUp = Loadable({
+    loader: () => import('./containers/customer_login/signup'),
+    loading: LoadingComponent,
 });
 
 const Routes = () => (

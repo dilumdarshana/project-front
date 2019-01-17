@@ -18,25 +18,25 @@ export class SignIn extends Component {
         };
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.loginSuccess !== this.props.loginSuccess) {
+            console.log('xxxx', this.props.loginSuccess);
+        }
+
+        if (prevProps.loginError !== this.props.loginError) {
+            console.log('Error', this.props.loginError.message);
+        }
+    }
+
     handleSubmit(e) {
         e.preventDefault();
 
         this.props.login('+94777610577');
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.loginSuccess !== this.props.loginSuccess) {
-            console.log('xxxx', this.props.loginSuccess)
-        }
-
-        if (prevProps.loginError !== this.props.loginError) {
-            console.log('Error', this.props.loginError.message)
-        }
-    }
- 
     render() {
         return (
-            <form onSubmit={(e) => this.handleSubmit(e)}>
+            <form onSubmit={e => this.handleSubmit(e)}>
                 <h3>Login</h3>
                 <div className="form-group">
                     <input type="text" className="form-control" placeholder="Phone*" />
@@ -65,9 +65,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-    login: data => {
-        dispatch(customerLogin(data));
-    },
+    login: data => dispatch(customerLogin(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

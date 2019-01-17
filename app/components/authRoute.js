@@ -6,7 +6,7 @@ class AuthRoute extends Switch {
         super(props);
 
         this.state = {
-            isLogged: false
+            isLogged: false,
         };
     }
 
@@ -18,8 +18,7 @@ class AuthRoute extends Switch {
     render() {
         const { isLogged } = this.state;
         return (
-            isLogged ?
-                <Fragment>{ this.props.children }</Fragment> : <Redirect to="/" />
+            isLogged ? <Fragment>{ this.props.children }</Fragment> : <Redirect to="/" />
         );
     }
 }
