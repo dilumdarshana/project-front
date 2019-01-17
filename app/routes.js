@@ -1,14 +1,19 @@
 import React from 'react';
-import {
-    BrowserRouter, Switch, Route, browserHistory,
-} from 'react-router-dom';
-import { ConnectedRouter } from 'connected-react-router';
+import {BrowserRouter, Switch, Route, browserHistory} from 'react-router-dom';
+import {ConnectedRouter} from 'connected-react-router';
+import Loadable from 'react-loadable';
 import Layout from './layout';
-import { history } from './store';
+import {history} from './store';
 
 import UsersList from './containers/users/users_list';
-import SignIn from './containers/customer_login/signin';
 import SignUp from './containers/customer_login/signup';
+
+import LoadingComponent from './components/common/loading';
+
+const SignIn = Loadable({
+    loader: () => import('./containers/customer_login/signin'),
+    loading: LoadingComponent,
+});
 
 const Routes = () => (
     <ConnectedRouter history={history}>
