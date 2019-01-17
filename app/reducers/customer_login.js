@@ -5,13 +5,18 @@ import {
 } from '../constants/action_types/customer';
 
 const initialState = {
-
+    customerLoginStatus: null,
+    customerLoginError: null,
 };
 
-export default function customer(state = initialState, action) {
+export default function customerLogin(state = initialState, action) {
     switch(action.type) {
         case CUSTOMER_LOGIN:
             return { ...state, };
+        case CUSTOMER_LOGIN_SUCCESS:
+            return { ...state, customerLoginStatus: action.response };
+        case CUSTOMER_LOGIN_FAILED:
+            return { ...state, customerLoginError: action.error };    
         default:
             return state;
     }

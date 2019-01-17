@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route, browserHistory} from 'react-router-dom';
+import {Switch, Route} from 'react-router-dom';
 import {ConnectedRouter} from 'connected-react-router';
 import Loadable from 'react-loadable';
 import Layout from './layout';
@@ -9,10 +9,11 @@ import UsersList from './containers/users/users_list';
 import SignUp from './containers/customer_login/signup';
 
 import LoadingComponent from './components/common/loading';
+import AuthRoute from './components/authRoute';
 
 const SignIn = Loadable({
     loader: () => import('./containers/customer_login/signin'),
-    loading: LoadingComponent,
+    loading: LoadingComponent
 });
 
 const Routes = () => (
@@ -21,7 +22,10 @@ const Routes = () => (
             <Switch>
                 <Route path="/login" component={SignIn} />
                 <Route path="/signup" component={SignUp} />
-                <Route path="/users" component={UsersList} />
+
+                <AuthRoute roles={['CUSTOMER']}>
+                    <Route path="/users" component={UsersList} />
+                </AuthRoute>
             </Switch>
         </Layout>
     </ConnectedRouter>

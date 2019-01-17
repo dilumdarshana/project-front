@@ -2,14 +2,16 @@ import {
     CUSTOMER_LOGIN,
     CUSTOMER_LOGIN_SUCCESS,
     CUSTOMER_LOGIN_FAILED,
-} from '../constants/action_types/customer';
+} from '../../constants/action_types/customer';
 
-const customerLogin = () => ({
-    type: CUSTOMER_LOGIN
+const customerLogin = phone => ({
+    type: CUSTOMER_LOGIN,
+    phone
 });
 
-const customerLoginSuccess = () => ({
-    type: CUSTOMER_LOGIN_SUCCESS
+const customerLoginSuccess = response => ({
+    type: CUSTOMER_LOGIN_SUCCESS,
+    response
 });
 
 const customerLoginFailed = error => ({

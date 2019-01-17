@@ -20,7 +20,7 @@ const getConfigBasedOnEnv = () => {
         default: return path.join(__dirname, '/../app/config/dev.js');
     }
 };
-console.log('--------', getConfigBasedOnEnv())
+
 module.exports = {
     entry: ['babel-polyfill', './app/'],
     output: {
@@ -42,6 +42,10 @@ module.exports = {
             {
                 test: /\.s?css$/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+            },
+            {
+                test: /\.(pdf|jpg|png|gif|svg|ico)$/,
+                loader: 'url-loader'
             },
         ],
     },
