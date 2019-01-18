@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 
+import { history } from '../../store';
 import { customerLogin } from './actions';
 import {
     getUserLoginState,
@@ -23,7 +24,9 @@ export class SignIn extends Component {
         const { loginSuccess, loginError } = this.props;
 
         if (loginSuccessPrev !== loginSuccess) {
-            // console.log('xxxx', loginSuccess);
+            if (loginSuccess) {
+                history.push('/verify');
+            }
         }
 
         if (loginErrorPrev !== loginError) {
