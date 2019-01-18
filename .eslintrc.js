@@ -7,19 +7,10 @@ module.exports = {
         "react/jsx-indent": ["error", 4],
         "react/jsx-filename-extension": [1, {"extensions": [".js", ".jsx"]}],
         "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ],
+        "operator-linebreak": ["error", "after", {"overrides": {":": "before"}}],
+        "quotes": ["error", "single"],
+        "semi": ["error", "always"],
         //"comma-dangle": ["error", "never"],
-        "no-unused-vars": [
-            "error", {
-                "args": "none" 
-            }
-        ]
+        "no-unused-vars": ["error", {"args": "none"}]
     }
 };

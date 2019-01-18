@@ -5,8 +5,6 @@ import Loadable from 'react-loadable';
 import Layout from './layout';
 import { history } from './store';
 
-import UsersList from './containers/users/users_list';
-
 import LoadingComponent from './components/common/loading';
 import AuthRoute from './components/authRoute';
 
@@ -27,9 +25,7 @@ const Routes = () => (
                 <Route path="/login" component={SignIn} />
                 <Route path="/signup" component={SignUp} />
 
-                <AuthRoute roles={['CUSTOMER']}>
-                    <Route path="/users" component={UsersList} />
-                </AuthRoute>
+                <AuthRoute roles={['CUSTOMER']} />
             </Switch>
         </Layout>
     </ConnectedRouter>

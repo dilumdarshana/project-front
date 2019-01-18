@@ -8,8 +8,8 @@
         "build:dev": "rimraf dist && webpack --colors --display-error-details --config ./webpack/webpack.dev.config.js",
         "build:qa": "rimraf dist && webpack --colors --display-error-details --config ./webpack/webpack.qa.config.js",
         "build:prod": "rimraf dist && webpack --colors --display-error-details --config ./webpack/webpack.prod.config.js",
-        "lint": "eslint .",
-        "lint:fix": "eslint . --fix"
+        "lint": "eslint --env browser .",
+        "lint:fix": "eslint --fix ."
     },
     "keywords": [
         "react",
@@ -31,6 +31,7 @@
         "react-loadable": "^5.5.0",
         "react-modal": "^3.8.1",
         "react-redux": "^6.0.0",
+        "react-router": "^4.3.1",
         "react-router-dom": "^4.3.1",
         "redux": "^4.0.1",
         "redux-form": "^8.1.0",

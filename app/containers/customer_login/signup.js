@@ -2,22 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 export class SignUp extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
-            phone: null,
         };
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log('submit')
     }
 
     render() {
         return (
-            <form onSubmit={(e) => this.handleSubmit(e)}>
+            <form onSubmit={e => this.handleSubmit(e)}>
                 <h3>Create Account for Free</h3>
                 <div className="form-group">
                     <input type="text" className="form-control" placeholder="Name*" />
@@ -34,7 +32,5 @@ export class SignUp extends Component {
         );
     }
 }
-
-
 
 export default connect(null, null)(SignUp);

@@ -5,7 +5,7 @@ import {
 } from '../constants/action_types/customer';
 
 const initialState = {
-    customerLoginStatus: null,
+    customerLoginStatus: false,
     customerLoginError: null,
 };
 
@@ -14,7 +14,7 @@ export default function customerLogin(state = initialState, action) {
         case CUSTOMER_LOGIN:
             return { ...state, customerLoginStatus: null, customerLoginError: null };
         case CUSTOMER_LOGIN_SUCCESS:
-            return { ...state, customerLoginStatus: action.response };
+            return { ...state, customerLoginStatus: action.response.status };
         case CUSTOMER_LOGIN_FAILED:
             return { ...state, customerLoginError: action.error };
         default:

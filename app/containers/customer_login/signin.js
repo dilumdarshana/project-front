@@ -19,19 +19,27 @@ export class SignIn extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.loginSuccess !== this.props.loginSuccess) {
-            console.log('xxxx', this.props.loginSuccess);
+        const { loginSuccess: loginSuccessPrev, loginError: loginErrorPrev } = prevProps;
+        const { loginSuccess, loginError } = this.props;
+
+        if (loginSuccessPrev !== loginSuccess) {
+            // console.log('xxxx', loginSuccess);
         }
 
-        if (prevProps.loginError !== this.props.loginError) {
-            console.log('Error', this.props.loginError.message);
+        if (loginErrorPrev !== loginError) {
+            // console.log('Error', this.props.loginError.message);
         }
+    }
+
+    addFormData(e) {
+        this.setState({ phone: e.target.value });
     }
 
     handleSubmit(e) {
         e.preventDefault();
+        const { props: { login }, state: { phone } } = this;
 
-        this.props.login('+94777610577');
+        login(phone);
     }
 
     render() {
@@ -39,7 +47,7 @@ export class SignIn extends Component {
             <form onSubmit={e => this.handleSubmit(e)}>
                 <h3>Login</h3>
                 <div className="form-group">
-                    <input type="text" className="form-control" placeholder="Phone*" />
+                    <input type="text" className="form-control" placeholder="Phone*" onChange={e => this.addFormData(e)} />
                 </div>
                 <button type="submit" className="btn btn-primary">Login</button>
             </form>
@@ -49,13 +57,13 @@ export class SignIn extends Component {
 
 SignIn.propTypes = {
     login: PropTypes.func,
-    loginSuccess: PropTypes.object,
-    loginError: PropTypes.object,
+    loginSuccess: PropTypes.bool,
+    loginError: PropTypes.string,
 };
 
 SignIn.defaultProps = {
     login: null,
-    loginSuccess: null,
+    loginSuccess: false,
     loginError: null,
 };
 
