@@ -17,8 +17,8 @@ const SignUp = Loadable({
     loader: () => import('./containers/customer_login/signup'),
     loading: LoadingComponent,
 });
-const VerifyPhone = Loadable({
-    loader: () => import('./components/verifyPhone'),
+const Verify = Loadable({
+    loader: () => import('./containers/customer_login/verify'),
     loading: LoadingComponent,
 });
 
@@ -28,7 +28,7 @@ const Routes = () => (
             <Switch>
                 <Route path="/login" component={SignIn} />
                 <Route path="/signup" component={SignUp} />
-                <Route path="/verify" component={VerifyPhone} />
+                <Route path="/verify" component={Verify} />
 
                 <AuthRoute roles={['CUSTOMER']} />
             </Switch>

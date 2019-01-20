@@ -10,8 +10,13 @@ export class VerifyPhone extends Component {
         }
     }
 
+    componentDidMount() {
+        console.log('xxx', this.props)
+    }
+
     handleSubmit(e) {
         e.preventDefault();
+
     }
 
     addFormData(e) {
