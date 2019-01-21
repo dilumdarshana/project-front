@@ -22,6 +22,11 @@ const Verify = Loadable({
     loading: LoadingComponent,
 });
 
+const CustomerProfile = Loadable({
+    loader: () => import('./components/customerProfile'),
+    loading: LoadingComponent,
+});
+
 const Routes = () => (
     <ConnectedRouter history={history}>
         <Layout>
@@ -30,7 +35,9 @@ const Routes = () => (
                 <Route path="/signup" component={SignUp} />
                 <Route path="/verify" component={Verify} />
 
-                <AuthRoute roles={['CUSTOMER']} />
+                <AuthRoute roles={['CUSTOMER']}>
+                    <Route path="/profile" component={CustomerProfile} />
+                </AuthRoute>
             </Switch>
         </Layout>
     </ConnectedRouter>

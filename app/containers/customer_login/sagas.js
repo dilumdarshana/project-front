@@ -6,12 +6,15 @@ import {
 import {
     customerLoginSuccess,
     customerLoginFailed,
+    verifyPhoneSuccess,
+    verifyPhoneFailed,
 } from './actions';
 import httpRequests from '../../helpers/httpRequests';
 
 export function* customerLogin(data) {
     try {
-        const result = yield call(httpRequests.customerLogin, data.phone);
+        const result = yield call(httpRequests.customerLogin, { phone: data.phone });
+
         yield put(customerLoginSuccess(result.data));
     } catch (error) {
         // eslint-disable-next-line no-console
@@ -20,11 +23,14 @@ export function* customerLogin(data) {
     }
 }
 
-export function* verifyPhone(data) {
+export function* verifyPhone(data) {console.log('data', data.data)
     try {
-        console.log('calling saga')
+        const result = yield call(httpRequests.verifyPhone, data.data);
+
+        yield put(verifyPhoneSuccess(result.data));
     } catch(error) {
         console.log('error', error);
+        yield put(verifyPhoneFailed(error));
     }
 }
 
