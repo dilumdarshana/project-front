@@ -22,7 +22,7 @@ const customerLoginFailed = error => ({
     error,
 });
 
-const verifyPhonee = data => ({
+const verifyPhone = data => ({
     type: VERIFY_PHONE,
     data,
 });
@@ -41,7 +41,7 @@ export {
     customerLogin,
     customerLoginSuccess,
     customerLoginFailed,
-    verifyPhonee,
+    verifyPhone,
     verifyPhoneSuccess,
     verifyPhoneFailed,
 };

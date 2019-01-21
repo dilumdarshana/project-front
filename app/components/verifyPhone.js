@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 
+import { history } from '../store';
 import { 
     verifyPhone,
 } from '../containers/customer_login/actions';
@@ -23,16 +24,19 @@ export class VerifyPhone extends Component {
     }
 
     componentDidMount() {
-        //this.props.verify({ });
+        const { phone } = this.props;
+        if (!phone) {
+            history.push('/login');
+        }
     }
 
     handleSubmit(e) {
         e.preventDefault();
 
-        //const { phone, verify } = this.props;console.log('this.props', this.props)
-        //const { code } = this.state;
+        const { phone, verify } = this.props;
+        const { code } = this.state;
 
-        this.props.verify({});
+        verify({ phone, code });
     }
 
     addFormData(e) {
@@ -54,10 +58,11 @@ export class VerifyPhone extends Component {
 
 VerifyPhone.propTypes = {
     verify: PropTypes.func,
+    phone: PropTypes.string,
 }
 
 VerifyPhone.defaultProps = {
-
+    phone: null,
 }
 
 const mapDispatchToProps = dispatch => ({

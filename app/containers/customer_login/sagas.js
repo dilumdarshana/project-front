@@ -1,6 +1,7 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
 import {
     CUSTOMER_LOGIN,
+    VERIFY_PHONE,
 } from '../../constants/action_types/customer';
 import {
     customerLoginSuccess,
@@ -19,8 +20,17 @@ export function* customerLogin(data) {
     }
 }
 
+export function* verifyPhone(data) {
+    try {
+        console.log('calling saga')
+    } catch(error) {
+        console.log('error', error);
+    }
+}
+
 export default function* usersSagas() {
     yield* [
         takeEvery(CUSTOMER_LOGIN, customerLogin),
+        takeEvery(VERIFY_PHONE, verifyPhone),
     ];
 }

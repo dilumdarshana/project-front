@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
-import { VerifyPhone } from '../../components/verifyPhone';
+import VerifyPhone from '../../components/verifyPhone';
 
 import {
     getLoggedCustomer
