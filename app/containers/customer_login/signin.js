@@ -76,7 +76,8 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-    login: data => dispatch(customerLogin(data)),
+    login: data => dispatch(customerLogin(data))
 });
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

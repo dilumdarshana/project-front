@@ -1,5 +1,13 @@
+'use strict';
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { createStructuredSelector } from 'reselect';
+
+import { 
+    verifyPhone,
+} from '../containers/customer_login/actions';
 
 export class VerifyPhone extends Component {
     constructor(props) {
@@ -10,13 +18,21 @@ export class VerifyPhone extends Component {
         }
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+       
+    }
+
     componentDidMount() {
-        console.log('xxx', this.props)
+        //this.props.verify({ });
     }
 
     handleSubmit(e) {
         e.preventDefault();
 
+        //const { phone, verify } = this.props;console.log('this.props', this.props)
+        //const { code } = this.state;
+
+        this.props.verify({});
     }
 
     addFormData(e) {
@@ -36,6 +52,16 @@ export class VerifyPhone extends Component {
     }
 }
 
+VerifyPhone.propTypes = {
+    verify: PropTypes.func,
+}
 
+VerifyPhone.defaultProps = {
 
-export default connect(null, null)(VerifyPhone);
+}
+
+const mapDispatchToProps = dispatch => ({
+    verify: data => dispatch(verifyPhone(data)),
+});
+
+export default connect(null, mapDispatchToProps)(VerifyPhone);
