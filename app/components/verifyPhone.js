@@ -9,6 +9,11 @@ import { history } from '../store';
 import { 
     verifyPhone,
 } from '../containers/customer_login/actions';
+import {
+    getCustomerPhoneVerifyState,
+    getVerifiedCustomerState,
+    getVerifyCustomerErrorState,
+} from '../containers/customer_login/selectors';
 
 export class VerifyPhone extends Component {
     constructor(props) {
@@ -20,13 +25,27 @@ export class VerifyPhone extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-       
+        const { verifyStatus: verifyStatusPrev, verifyCustomerError: verifyCustomerErrorPrev } = prevProps;
+        const { verifyStatus, onSuccess, verifiedCustomer, verifyCustomerError } = this.props;
+
+        if (verifyStatusPrev !== verifyStatus) {
+            if (verifyStatus) {
+                onSuccess();
+            }
+            if (verifiedCustomer) {
+                // TODO... store token on local storage
+            }
+        }
+
+        if (verifyCustomerErrorPrev !== verifyCustomerError) {
+            console.log('error on verifying customer phone')
+        }
     }
 
     componentDidMount() {
-        const { phone } = this.props;
+        const { phone, onDirectAccess } = this.props;
         if (!phone) {
-            history.push('/login');
+            history.push(onDirectAccess);
         }
     }
 
@@ -59,14 +78,26 @@ export class VerifyPhone extends Component {
 VerifyPhone.propTypes = {
     verify: PropTypes.func,
     phone: PropTypes.string,
+    verifiedCustomer: PropTypes.object,
+    verifyStatus: PropTypes.bool,
+    verifyCustomerError: PropTypes.string,
 }
 
 VerifyPhone.defaultProps = {
     phone: null,
+    verifiedCustomer: null,
+    verifyStatus: false,
+    verifyCustomerError: null,
 }
+
+const mapStateToProps = createStructuredSelector({
+    verifyStatus: getCustomerPhoneVerifyState(),
+    verifiedCustomer: getVerifiedCustomerState(),
+    verifyCustomerError: getVerifyCustomerErrorState(),
+});
 
 const mapDispatchToProps = dispatch => ({
     verify: data => dispatch(verifyPhone(data)),
 });
 
-export default connect(null, mapDispatchToProps)(VerifyPhone);
+export default connect(mapStateToProps, mapDispatchToProps)(VerifyPhone);

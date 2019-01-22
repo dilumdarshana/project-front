@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import VerifyPhone from '../../components/verifyPhone';
+import { history } from '../../store';
 
 import {
     getLoggedCustomer
@@ -10,10 +11,14 @@ import {
 
 export class Verify extends Component {
 
+    handleSuccess() {
+        history.push('/profile');
+    }
+
     render() {
         const { loggedCustomer: { phone } } = this.props;
         return (
-            <VerifyPhone phone={phone} />
+            <VerifyPhone phone={phone} onSuccess={this.handleSuccess} onDirectAccess="/login" />
         )
     }
 }

@@ -24,6 +24,7 @@
         "babel-polyfill": "^6.26.0",
         "bootstrap": "^4.2.1",
         "connected-react-router": "^6.2.1",
+        "cookies-js": "^1.2.3",
         "history": "^4.7.2",
         "prop-types": "^15.6.2",
         "react": "^16.7.0",

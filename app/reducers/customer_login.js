@@ -13,6 +13,7 @@ const initialState = {
     customerLoginError: null,
     verifyPhoneResults: null,
     verifyPhoneError: null,
+    verifyPhoneStatus: false,
 };
 
 export default function customerLogin(state = initialState, action) {console.log('action', action)
@@ -26,7 +27,7 @@ export default function customerLogin(state = initialState, action) {console.log
         case VERIFY_PHONE:
             return { ...state };
         case VERIFY_PHONE_SUCCESS:
-            return { ...state, verifyPhoneResults: action.response };
+            return { ...state, verifyPhoneResults: action.response, verifyPhoneStatus: action.response.status };
         case VERIFY_PHONE_FAILED:
             return { ...state, verifyPhoneError: action.error };
 
