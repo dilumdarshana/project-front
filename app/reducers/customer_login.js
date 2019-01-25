@@ -16,7 +16,7 @@ const initialState = {
     verifyPhoneStatus: false,
 };
 
-export default function customerLogin(state = initialState, action) {console.log('action', action)
+export default function customerLogin(state = initialState, action) {
     switch (action.type) {
         case CUSTOMER_LOGIN:
             return { ...state, customerLoginStatus: null, customerLoginError: null };

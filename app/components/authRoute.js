@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Redirect, Switch } from 'react-router';
-import browserStorage from '../helpers/browserStorage';
+import BrowserStorage from '../helpers/browserStorage';
 import constants from '../constants';
 
 class AuthRoute extends Switch {
@@ -8,26 +8,29 @@ class AuthRoute extends Switch {
         super(props);
 
         this.state = {
-            loggedUSer: null,
+            isRouteAccessible: false,
         };
     }
 
     componentWillMount() {
         // check token validity
-        const storedData = browserStorage.getLocalStorage('lst_token');
+        const storedData = BrowserStorage.getLocalStorage('lst_token');
+        const { roles } = this.props;
 
-        if (storedData.token) {
-            this.setState({ loggedUSer: storedData.user });
+        const allowedRoles = roles.filter(role => {
+            return constants.user_types[role] === storedData.user.type;
+        });
+
+        if (storedData.token && allowedRoles.length > 0) {
+            this.setState({ isRouteAccessible: true });
         }
     }
 
     render() {
-        const { loggedUSer } = this.state;
-        const { roles } = this.props;
-
+        const { isRouteAccessible } = this.state;
         
         return (
-            loggedUSer ? <Fragment>{ this.props.children }</Fragment> : <Redirect to="/" />
+            isRouteAccessible ? <Fragment>{ this.props.children }</Fragment> : <Redirect to="/" />
         );
     }
 }

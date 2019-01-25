@@ -31,12 +31,13 @@ const Routes = () => (
     <ConnectedRouter history={history}>
         <Layout>
             <Switch>
-                <Route path="/login" component={SignIn} />
+                <Route exact path="/" component={SignIn} />
                 <Route path="/signup" component={SignUp} />
                 <Route path="/verify" component={Verify} />
 
                 <AuthRoute roles={['CUSTOMER']}>
                     <Route path="/profile" component={CustomerProfile} />
+
                 </AuthRoute>
             </Switch>
         </Layout>

@@ -18,7 +18,7 @@ export class Verify extends Component {
     render() {
         const { loggedCustomer: { phone } } = this.props;
         return (
-            <VerifyPhone phone={phone} onSuccess={this.handleSuccess} onDirectAccess="/login" />
+            <VerifyPhone phone={phone} onSuccess={this.handleSuccess} onDirectAccess="/" />
         )
     }
 }

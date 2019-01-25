@@ -1,11 +1,9 @@
-'use strict';
-
 const constants = {
     user_types: {
-        1: 'CUSTOMER',
-        2: 'RO',
-        3: 'ADMIN',
-        4: 'SUPER_ADMIN',
+        'CUSTOMER': 1,
+        'RO': 2,
+        'ADMIN': 3,
+        'SUPER_ADMIN': 4,
     }
 };
 

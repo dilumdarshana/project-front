@@ -11,6 +11,8 @@ module.exports = {
         "quotes": ["error", "single"],
         "semi": ["error", "always"],
         //"comma-dangle": ["error", "never"],
-        "no-unused-vars": ["error", {"args": "none"}]
+        "no-unused-vars": ["error", {"args": "none"}],
+        "max-len": ["error", 150],
+        "react/forbid-prop-types": ["error", "never"]
     }
 };

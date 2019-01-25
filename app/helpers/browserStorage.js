@@ -1,9 +1,8 @@
 import Cookies from 'cookies-js';
 
-class browserStorage {
-
+class BrowserStorage {
     setCookie(key, value, expiresIn = 86400) {
-        Cookies.set(key, JSON.stringify(value), { expires: expiresIn , httpOnly: true });
+        Cookies.set(key, JSON.stringify(value), { expires: expiresIn, httpOnly: true });
     }
 
     getCookie(key) {
@@ -46,4 +45,4 @@ class browserStorage {
     }
 }
 
-export default new browserStorage();
+export default new BrowserStorage();
