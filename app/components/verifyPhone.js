@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 
 import { history } from '../store';
+import browserStorage from '../helpers/browserStorage';
 import { 
     verifyPhone,
 } from '../containers/customer_login/actions';
@@ -33,7 +34,7 @@ export class VerifyPhone extends Component {
                 onSuccess();
             }
             if (verifiedCustomer) {
-                // TODO... store token on local storage
+                browserStorage.setLocalStorage('lst_token', verifiedCustomer.data);
             }
         }
 
