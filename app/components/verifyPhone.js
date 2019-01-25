@@ -1,5 +1,3 @@
-'use strict';
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -7,7 +5,7 @@ import { createStructuredSelector } from 'reselect';
 
 import { history } from '../store';
 import browserStorage from '../helpers/browserStorage';
-import { 
+import {
     verifyPhone,
 } from '../containers/customer_login/actions';
 import {
@@ -22,12 +20,21 @@ export class VerifyPhone extends Component {
 
         this.state = {
             code: null,
+        };
+    }
+
+    componentDidMount() {
+        const { phone, onDirectAccess } = this.props;
+        if (!phone) {
+            history.push(onDirectAccess);
         }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         const { verifyStatus: verifyStatusPrev, verifyCustomerError: verifyCustomerErrorPrev } = prevProps;
-        const { verifyStatus, onSuccess, verifiedCustomer, verifyCustomerError } = this.props;
+        const {
+            verifyStatus, onSuccess, verifiedCustomer, verifyCustomerError,
+        } = this.props;
 
         if (verifyStatusPrev !== verifyStatus) {
             if (verifyStatus) {
@@ -39,14 +46,7 @@ export class VerifyPhone extends Component {
         }
 
         if (verifyCustomerErrorPrev !== verifyCustomerError) {
-            console.log('error on verifying customer phone')
-        }
-    }
-
-    componentDidMount() {
-        const { phone, onDirectAccess } = this.props;
-        if (!phone) {
-            history.push(onDirectAccess);
+            // TODO...
         }
     }
 
@@ -82,14 +82,19 @@ VerifyPhone.propTypes = {
     verifiedCustomer: PropTypes.object,
     verifyStatus: PropTypes.bool,
     verifyCustomerError: PropTypes.string,
-}
+    onSuccess: PropTypes.func,
+    onDirectAccess: PropTypes.func,
+};
 
 VerifyPhone.defaultProps = {
+    verify: null,
     phone: null,
     verifiedCustomer: null,
     verifyStatus: false,
     verifyCustomerError: null,
-}
+    onSuccess: null,
+    onDirectAccess: null,
+};
 
 const mapStateToProps = createStructuredSelector({
     verifyStatus: getCustomerPhoneVerifyState(),

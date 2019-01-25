@@ -23,12 +23,13 @@ export function* customerLogin(data) {
     }
 }
 
-export function* verifyPhone(data) {console.log('data', data.data)
+export function* verifyPhone(data) {
     try {
         const result = yield call(httpRequests.verifyPhone, data.data);
 
         yield put(verifyPhoneSuccess(result.data));
-    } catch(error) {
+    } catch (error) {
+        // eslint-disable-next-line no-console
         console.log('error', error);
         yield put(verifyPhoneFailed(error));
     }

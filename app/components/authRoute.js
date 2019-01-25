@@ -17,9 +17,7 @@ class AuthRoute extends Switch {
         const storedData = BrowserStorage.getLocalStorage('lst_token');
         const { roles } = this.props;
 
-        const allowedRoles = roles.filter(role => {
-            return constants.user_types[role] === storedData.user.type;
-        });
+        const allowedRoles = roles.filter(role => constants.user_types[role] === storedData.user.type);
 
         if (storedData.token && allowedRoles.length > 0) {
             this.setState({ isRouteAccessible: true });
@@ -28,7 +26,7 @@ class AuthRoute extends Switch {
 
     render() {
         const { isRouteAccessible } = this.state;
-        
+
         return (
             isRouteAccessible ? <Fragment>{ this.props.children }</Fragment> : <Redirect to="/" />
         );

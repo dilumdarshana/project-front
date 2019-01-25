@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 
 export class CustomerProfile extends Component {
     render() {
-
-        return(
+        return (
             <h3>Customer Profile</h3>
-        )
+        );
     }
 }
 

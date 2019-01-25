@@ -13,6 +13,5 @@ module.exports = {
         //"comma-dangle": ["error", "never"],
         "no-unused-vars": ["error", {"args": "none"}],
         "max-len": ["error", 150],
-        "react/forbid-prop-types": ["error", "never"]
     }
 };
